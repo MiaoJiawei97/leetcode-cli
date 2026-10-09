@@ -59,7 +59,7 @@ export async function todayCommand(): Promise<void> {
 
     console.log();
     console.log(
-      chalk.gray(`   leetcode pick ${daily.question.questionFrontendId} # Start working on it`)
+      chalk.gray(`   lc pick ${daily.question.questionFrontendId} # Start working on it`)
     );
   } catch (error) {
     spinner.fail('Failed to fetch progress');

@@ -71,7 +71,7 @@ export async function workspaceCreateCommand(
     console.log(chalk.green(`✓ Created workspace "${workspaceName}"`));
     console.log(`  workDir: ${chalk.gray(workDir)}`);
     console.log();
-    console.log(chalk.gray(`Switch to it: leetcode workspace use ${workspaceName}`));
+    console.log(chalk.gray(`Switch to it: lc workspace use ${workspaceName}`));
   } else {
     console.log(chalk.red('Failed to create workspace'));
   }
@@ -86,7 +86,7 @@ export async function workspaceUseCommand(name: string): Promise<void> {
 
   if (!workspaceStorage.exists(workspaceName)) {
     console.log(chalk.red(`Workspace "${workspaceName}" not found`));
-    console.log(chalk.gray('Use `leetcode workspace list` to see available workspaces'));
+    console.log(chalk.gray('Use `lc workspace list` to see available workspaces'));
     return;
   }
 

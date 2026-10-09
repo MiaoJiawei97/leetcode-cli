@@ -96,9 +96,7 @@ export async function configCommand(options: ConfigOptions): Promise<void> {
 
       await credentials.clear();
       console.log(
-        chalk.yellow(
-          `⚠️  Logged out — run "leetcode login" to authenticate with ${normalizedSite}.`
-        )
+        chalk.yellow(`⚠️  Logged out — run "lc login" to authenticate with ${normalizedSite}.`)
       );
     }
 
@@ -198,7 +196,7 @@ export async function configInteractiveCommand(): Promise<void> {
       await credentials.clear();
       console.log();
       console.log(
-        chalk.yellow(`⚠️  Logged out — run "leetcode login" to authenticate with ${answers.site}.`)
+        chalk.yellow(`⚠️  Logged out — run "lc login" to authenticate with ${answers.site}.`)
       );
     } else {
       console.log();

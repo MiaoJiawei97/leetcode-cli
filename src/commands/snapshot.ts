@@ -30,9 +30,7 @@ export async function snapshotSaveCommand(problemId: string, name?: string): Pro
 
     if (!filePath) {
       console.log(chalk.red(`No solution file found for problem ${problemId}`));
-      console.log(
-        chalk.gray('Run `leetcode pick ' + problemId + '` first to create a solution file.')
-      );
+      console.log(chalk.gray('Run `lc pick ' + problemId + '` first to create a solution file.'));
       return;
     }
 
@@ -76,7 +74,7 @@ export async function snapshotListCommand(problemId: string): Promise<void> {
 
   if (snapshots.length === 0) {
     console.log(chalk.yellow(`No snapshots found for problem ${problemId}`));
-    console.log(chalk.gray('Use `leetcode snapshot save ' + problemId + '` to create one.'));
+    console.log(chalk.gray('Use `lc snapshot save ' + problemId + '` to create one.'));
     return;
   }
 
@@ -100,9 +98,9 @@ export async function snapshotListCommand(problemId: string): Promise<void> {
 
   console.log();
   console.log(chalk.gray('Commands:'));
-  console.log(chalk.gray(`  restore: leetcode snapshot restore ${problemId} <id|name>`));
-  console.log(chalk.gray(`  diff:    leetcode snapshot diff ${problemId} <id1> <id2>`));
-  console.log(chalk.gray(`  delete:  leetcode snapshot delete ${problemId} <id|name>`));
+  console.log(chalk.gray(`  restore: lc snapshot restore ${problemId} <id|name>`));
+  console.log(chalk.gray(`  diff:    lc snapshot diff ${problemId} <id1> <id2>`));
+  console.log(chalk.gray(`  delete:  lc snapshot delete ${problemId} <id|name>`));
 }
 
 export async function snapshotRestoreCommand(problemId: string, idOrName: string): Promise<void> {
@@ -115,7 +113,7 @@ export async function snapshotRestoreCommand(problemId: string, idOrName: string
     if (!snapshot) {
       console.log(chalk.red(`Snapshot "${idOrName}" not found for problem ${problemId}`));
       console.log(
-        chalk.gray('Run `leetcode snapshot list ' + problemId + '` to see available snapshots.')
+        chalk.gray('Run `lc snapshot list ' + problemId + '` to see available snapshots.')
       );
       return;
     }

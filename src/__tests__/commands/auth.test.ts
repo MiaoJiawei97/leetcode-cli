@@ -13,7 +13,7 @@ vi.mock('../../storage/credentials.js', () => ({
     if (status.reason === 'LEGACY_CREDENTIALS_IGNORED') {
       return 'Legacy plaintext credentials were detected and ignored.';
     }
-    return 'Not logged in. Run \"leetcode login\" to authenticate.';
+    return 'Not logged in. Run \"lc login\" to authenticate.';
   }),
 }));
 

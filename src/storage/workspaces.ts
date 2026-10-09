@@ -66,7 +66,7 @@ export const workspaceStorage = {
     if (registry.workspaces.length === 0) {
       this.create('default', {
         workDir: join(homedir(), 'leetcode'),
-        lang: 'typescript',
+        lang: 'java',
         site: 'leetcode.com',
       });
       registry.workspaces = ['default'];
@@ -222,7 +222,7 @@ export const workspaceStorage = {
     // Default config
     return {
       workDir: join(homedir(), 'leetcode'),
-      lang: 'typescript',
+      lang: 'java',
       site: 'leetcode.com',
     };
   },

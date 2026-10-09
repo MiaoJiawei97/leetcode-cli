@@ -173,15 +173,18 @@ leetcode hint 1 --all
 ### Pick Problem
 
 ```bash
-# Generate solution file (uses default language)
-leetcode pick 1
+# Generate Java solution file without opening an editor (default)
+lc pick 1
 
 # Specify language
-leetcode pick 1 --lang python3
-leetcode pick 175 --lang sql
+lc pick 1 --lang python3
+lc pick 175 --lang sql
 
-# Skip opening in editor
-leetcode pick 1 --no-open
+# Explicitly open the solution file in the editor
+lc pick 1 --open
+
+# Explicitly keep the editor closed
+lc pick 1 --no-open
 ```
 
 ### Reset Problem

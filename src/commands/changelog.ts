@@ -251,7 +251,7 @@ export async function changelogCommand(
 
     // Header
     console.log();
-    console.log(chalk.bold.cyan('📋 LeetCode CLI Release Notes'));
+    console.log(chalk.bold.cyan('📋 lc Release Notes'));
     console.log(chalk.gray('─'.repeat(50)));
     console.log();
 

@@ -5,6 +5,7 @@
   "type": "module",
   "main": "dist/index.js",
   "bin": {
+    "lc": "dist/index.js",
     "leetcode": "dist/index.js"
   },
   "repository": {

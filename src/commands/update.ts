@@ -87,7 +87,7 @@ function displayUpdateBox(
     console.log(chalk.cyan('│') + ''.padEnd(boxWidth - 2) + chalk.cyan('│'));
     const breakingMsg = `  ${chalk.yellow('⚠️  This update contains breaking changes!')}`;
     console.log(chalk.cyan('│') + breakingMsg.padEnd(boxWidth + 20) + chalk.cyan('│'));
-    const changelogMsg = `  ${chalk.gray('Run:')} leetcode changelog ${chalk.gray('to review changes')}`;
+    const changelogMsg = `  ${chalk.gray('Run:')} lc changelog ${chalk.gray('to review changes')}`;
     console.log(chalk.cyan('│') + changelogMsg.padEnd(boxWidth + 16) + chalk.cyan('│'));
   }
 
@@ -149,7 +149,7 @@ export async function updateCommand(options: UpdateOptions): Promise<void> {
             '💡 Tip: Review the changelog before updating to check for breaking changes.'
           )
         );
-        console.log(chalk.gray('   Run: leetcode changelog\n'));
+        console.log(chalk.gray('   Run: lc changelog\n'));
       }
     }
   } else {
@@ -192,10 +192,10 @@ function displayStartupBanner(current: string, latest: string, hasBreaking: bool
   console.log();
   if (hasBreaking) {
     console.log(chalk.yellow(`⚠️  Update ${current} → ${latest} available (breaking changes!)`));
-    console.log(chalk.gray('   Run: leetcode changelog && leetcode update'));
+    console.log(chalk.gray('   Run: lc changelog && lc update'));
   } else {
     console.log(chalk.cyan(`🚀 Update available: ${current} → ${latest}`));
-    console.log(chalk.gray('   Run: leetcode update'));
+    console.log(chalk.gray('   Run: lc update'));
   }
   console.log();
 }

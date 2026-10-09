@@ -162,7 +162,7 @@ describe('resetCommand', () => {
 
     expect(result).toBe(false);
     expect(writeFile).not.toHaveBeenCalled();
-    expect(outputContains('Run "leetcode pick 1" first')).toBe(true);
+    expect(outputContains('Run "lc pick 1" first')).toBe(true);
   });
 
   it('does not write when the resolved file target is outside the workspace', async () => {

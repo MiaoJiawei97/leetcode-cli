@@ -70,7 +70,7 @@ async function listBookmarks(): Promise<void> {
 
   if (bookmarkList.length === 0) {
     console.log(chalk.yellow('📌 No bookmarked problems'));
-    console.log(chalk.gray('Use "leetcode bookmark add <id>" to bookmark a problem'));
+    console.log(chalk.gray('Use "lc bookmark add <id>" to bookmark a problem'));
     return;
   }
 

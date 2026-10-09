@@ -72,7 +72,7 @@ describe('CLI Integration Tests', () => {
       const { stdout, exitCode } = runCLI(['--help']);
       expect(exitCode).toBe(0);
       expect(stdout).toContain('Usage:');
-      expect(stdout).toContain('leetcode');
+      expect(stdout).toContain('lc');
     });
 
     it('should show help with -h', () => {
@@ -85,7 +85,7 @@ describe('CLI Integration Tests', () => {
       const { stdout, stderr } = runCLI([]);
       // Output might go to stdout or stderr
       const output = stdout + stderr;
-      expect(output).toContain('leetcode');
+      expect(output).toContain('lc');
     });
   });
 

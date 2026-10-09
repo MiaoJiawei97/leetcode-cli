@@ -19,7 +19,7 @@ export async function dailyCommand(): Promise<void> {
 
     console.log();
     console.log(chalk.gray('Run the following to start working on this problem:'));
-    console.log(chalk.cyan(`  leetcode pick ${daily.question.titleSlug}`));
+    console.log(chalk.cyan(`  lc pick ${daily.question.titleSlug}`));
   } catch (error) {
     spinner.fail('Failed to fetch daily challenge');
     if (error instanceof Error) {

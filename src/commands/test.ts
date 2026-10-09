@@ -28,7 +28,7 @@ export async function testCommand(fileOrId: string, options: TestOptions): Promi
     if (!found) {
       console.log(chalk.red(`No solution file found for problem ${fileOrId}`));
       console.log(chalk.gray(`Looking in: ${workDir}`));
-      console.log(chalk.gray(`Run "leetcode pick ${fileOrId}" first to create a solution file.`));
+      console.log(chalk.gray(`Run "lc pick ${fileOrId}" first to create a solution file.`));
       return;
     }
     filePath = found;
@@ -57,7 +57,7 @@ export async function testCommand(fileOrId: string, options: TestOptions): Promi
     console.log(
       chalk.yellow('\nFor security reasons, you can only test files from within your workspace.')
     );
-    console.log(chalk.gray('Use "leetcode config workdir <path>" to change your workspace.'));
+    console.log(chalk.gray('Use "lc config workdir <path>" to change your workspace.'));
     return;
   }
 
@@ -108,7 +108,7 @@ export async function testCommand(fileOrId: string, options: TestOptions): Promi
     if (filePath.toLowerCase().endsWith('.sql')) {
       console.log(
         chalk.yellow(
-          'SQL interpret mode may be unavailable for this problem on LeetCode. Try `leetcode submit <file>`.'
+          'SQL interpret mode may be unavailable for this problem on LeetCode. Try `lc submit <file>`.'
         )
       );
     }

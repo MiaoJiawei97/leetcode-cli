@@ -132,9 +132,7 @@ export async function diffCommand(problemId: string, options: DiffOptions): Prom
 
     if (!filePath) {
       spinner.fail(`No solution file found for problem ${problemId}`);
-      console.log(
-        chalk.gray('Run `leetcode pick ' + problemId + '` first to create a solution file.')
-      );
+      console.log(chalk.gray('Run `lc pick ' + problemId + '` first to create a solution file.'));
       return;
     }
 

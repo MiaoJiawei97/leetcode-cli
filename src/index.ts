@@ -68,22 +68,22 @@ program.configureHelp({
 });
 
 program
-  .name('leetcode')
+  .name('lc')
   .usage('[command] [options]')
-  .description(chalk.bold.cyan('🔥 A modern LeetCode CLI built with TypeScript'))
+  .description(chalk.bold.cyan('🔥 lc: LeetCode in your terminal'))
   .version('3.5.2', '-v, --version', 'Output the version number')
   .helpOption('-h, --help', 'Display help for command')
   .addHelpText(
     'after',
     `
 ${chalk.yellow('Examples:')}
-  ${chalk.cyan('$ leetcode login')}             Login to LeetCode
-  ${chalk.cyan('$ leetcode list -d easy')}      List easy problems
-  ${chalk.cyan('$ leetcode random -d medium')}   Get random medium problem
-  ${chalk.cyan('$ leetcode pick 1')}            Start solving "Two Sum"
-  ${chalk.cyan('$ leetcode test 1')}            Test your solution
-  ${chalk.cyan('$ leetcode reset 1')}           Reset solution to original stub
-  ${chalk.cyan('$ leetcode submit 1')}          Submit your solution
+  ${chalk.cyan('$ lc login')}             Login to LeetCode
+  ${chalk.cyan('$ lc list -d easy')}      List easy problems
+  ${chalk.cyan('$ lc random -d medium')}   Get random medium problem
+  ${chalk.cyan('$ lc pick 1')}            Start solving "Two Sum"
+  ${chalk.cyan('$ lc test 1')}            Test your solution
+  ${chalk.cyan('$ lc reset 1')}           Reset solution to original stub
+  ${chalk.cyan('$ lc submit 1')}          Submit your solution
 `
   );
 
@@ -94,7 +94,7 @@ program
     'after',
     `
 ${chalk.yellow('How to login:')}
-  1. Run ${chalk.cyan('leetcode login')} and choose site (${chalk.cyan('leetcode.com')} or ${chalk.cyan('leetcode.cn')})
+  1. Run ${chalk.cyan('lc login')} and choose site (${chalk.cyan('leetcode.com')} or ${chalk.cyan('leetcode.cn')})
   2. Login to your account
   3. Open Developer Tools (F12) → Application → Cookies
   4. Copy values of ${chalk.green('LEETCODE_SESSION')} and ${chalk.green('csrftoken')}
@@ -126,12 +126,12 @@ program
     'after',
     `
 ${chalk.yellow('Examples:')}
-  ${chalk.cyan('$ leetcode list')}                    List first 20 problems
-  ${chalk.cyan('$ leetcode list -d easy')}            List easy problems only
-  ${chalk.cyan('$ leetcode list -s solved')}          List your solved problems
-  ${chalk.cyan('$ leetcode list -t array -t string')} Filter by multiple tags
-  ${chalk.cyan('$ leetcode list -q "two sum"')}       Search by keywords
-  ${chalk.cyan('$ leetcode list -n 50 -p 2')}         Show 50 problems, page 2
+  ${chalk.cyan('$ lc list')}                    List first 20 problems
+  ${chalk.cyan('$ lc list -d easy')}            List easy problems only
+  ${chalk.cyan('$ lc list -s solved')}          List your solved problems
+  ${chalk.cyan('$ lc list -t array -t string')} Filter by multiple tags
+  ${chalk.cyan('$ lc list -q "two sum"')}       Search by keywords
+  ${chalk.cyan('$ lc list -n 50 -p 2')}         Show 50 problems, page 2
 `
   )
   .action(listCommand);
@@ -144,9 +144,9 @@ program
     'after',
     `
 ${chalk.yellow('Examples:')}
-  ${chalk.cyan('$ leetcode show 1')}                  Show by problem ID
-  ${chalk.cyan('$ leetcode show two-sum')}            Show by problem slug
-  ${chalk.cyan('$ leetcode s 412')}                   Short alias
+  ${chalk.cyan('$ lc show 1')}                  Show by problem ID
+  ${chalk.cyan('$ lc show two-sum')}            Show by problem slug
+  ${chalk.cyan('$ lc s 412')}                   Short alias
 `
   )
   .action(showCommand);
@@ -160,10 +160,10 @@ program
     'after',
     `
 ${chalk.yellow('Examples:')}
-  ${chalk.cyan('$ leetcode hint 1')}                  Show hints for problem 1
-  ${chalk.cyan('$ leetcode hint two-sum')}            Show hints by slug
-  ${chalk.cyan('$ leetcode hint 1 --all')}            Show all hints at once
-  ${chalk.cyan('$ leetcode h 412')}                   Short alias
+  ${chalk.cyan('$ lc hint 1')}                  Show hints for problem 1
+  ${chalk.cyan('$ lc hint two-sum')}            Show hints by slug
+  ${chalk.cyan('$ lc hint 1 --all')}            Show all hints at once
+  ${chalk.cyan('$ lc h 412')}                   Short alias
 
 ${chalk.gray('Hints are revealed one at a time. Press Enter to see more.')}
 `
@@ -178,8 +178,8 @@ program
     'after',
     `
 ${chalk.yellow('Examples:')}
-  ${chalk.cyan('$ leetcode daily')}                   Show today's challenge
-  ${chalk.cyan('$ leetcode d')}                       Short alias
+  ${chalk.cyan('$ lc daily')}                   Show today's challenge
+  ${chalk.cyan('$ lc d')}                       Short alias
 `
   )
   .action(dailyCommand);
@@ -191,16 +191,17 @@ program
   .option('-d, --difficulty <level>', 'Filter by difficulty (easy/medium/hard)')
   .option('-t, --tag <tag>', 'Filter by topic tag')
   .option('--pick', 'Auto-generate solution file')
-  .option('--no-open', 'Do not open file in editor')
+  .option('--open', 'Open file in editor after picking', false)
+  .option('--no-open', 'Do not open file in editor (default)')
   .addHelpText(
     'after',
     `
 ${chalk.yellow('Examples:')}
-  ${chalk.cyan('$ leetcode random')}                  Get any random problem
-  ${chalk.cyan('$ leetcode random -d medium')}        Random medium problem
-  ${chalk.cyan('$ leetcode random -t array')}         Random array problem
-  ${chalk.cyan('$ leetcode random --pick')}           Random + create file
-  ${chalk.cyan('$ leetcode r -d easy --pick')}        Random easy + file
+  ${chalk.cyan('$ lc random')}                  Get any random problem
+  ${chalk.cyan('$ lc random -d medium')}        Random medium problem
+  ${chalk.cyan('$ lc random -t array')}         Random array problem
+  ${chalk.cyan('$ lc random --pick')}           Random + create file
+  ${chalk.cyan('$ lc r -d easy --pick')}        Random easy + file
 `
   )
   .action(randomCommand);
@@ -210,16 +211,17 @@ program
   .alias('p')
   .description('Generate solution file for a problem')
   .option('-l, --lang <language>', 'Programming language for the solution')
-  .option('--no-open', 'Do not open file in editor')
+  .option('--open', 'Open file in editor after picking', false)
+  .option('--no-open', 'Do not open file in editor (default)')
   .addHelpText(
     'after',
     `
 ${chalk.yellow('Examples:')}
-  ${chalk.cyan('$ leetcode pick 1')}                  Pick by problem ID
-  ${chalk.cyan('$ leetcode pick two-sum')}            Pick by problem slug
-  ${chalk.cyan('$ leetcode pick 1 -l python3')}       Pick with specific language
-  ${chalk.cyan('$ leetcode pick 1 --no-open')}        Create file without opening
-  ${chalk.cyan('$ leetcode p 412')}                   Short alias
+  ${chalk.cyan('$ lc pick 1')}                  Pick by problem ID
+  ${chalk.cyan('$ lc pick two-sum')}            Pick by problem slug
+  ${chalk.cyan('$ lc pick 1 -l python3')}       Pick with specific language
+  ${chalk.cyan('$ lc pick 1 --open')}           Create file and open in editor
+  ${chalk.cyan('$ lc p 412')}                   Short alias
 
 ${chalk.gray('Files are organized by: workDir/Difficulty/Category/')}
 `
@@ -236,8 +238,8 @@ program
     'after',
     `
 ${chalk.yellow('Examples:')}
-  ${chalk.cyan('$ leetcode pick-batch 1 2 3')}        Pick problems 1, 2, and 3
-  ${chalk.cyan('$ leetcode pick-batch 1 2 3 -l py')}  Pick with Python
+  ${chalk.cyan('$ lc pick-batch 1 2 3')}        Pick problems 1, 2, and 3
+  ${chalk.cyan('$ lc pick-batch 1 2 3 -l py')}  Pick with Python
 `
   )
   .action(batchPickCommand);
@@ -247,15 +249,16 @@ program
   .alias('c')
   .description('Browse contests and generate a solution for a contest problem')
   .option('-l, --lang <language>', 'Programming language for the solution')
-  .option('--no-open', 'Do not open file in editor')
+  .option('--open', 'Open file in editor after picking', false)
+  .option('--no-open', 'Do not open file in editor (default)')
   .addHelpText(
     'after',
     `
 ${chalk.yellow('Examples:')}
-  ${chalk.cyan('$ leetcode contest')}                    Browse available contests
-  ${chalk.cyan('$ leetcode contest weekly-contest-1')}  Open a contest by slug
-  ${chalk.cyan('$ leetcode contest -l python3')}         Pick with specific language
-  ${chalk.cyan('$ leetcode contest --no-open')}          Create file without opening
+  ${chalk.cyan('$ lc contest')}                    Browse available contests
+  ${chalk.cyan('$ lc contest weekly-contest-1')}  Open a contest by slug
+  ${chalk.cyan('$ lc contest -l python3')}         Pick with specific language
+  ${chalk.cyan('$ lc contest --open')}             Create file and open in editor
 `
   )
   .action((slug, options) => contestCommand(slug, options));
@@ -270,12 +273,12 @@ program
     'after',
     `
 ${chalk.yellow('Examples:')}
-  ${chalk.cyan('$ leetcode test 1')}                  Test by problem ID
-  ${chalk.cyan('$ leetcode test two-sum')}            Test by problem slug
-  ${chalk.cyan('$ leetcode test ./path/to/file.py')} Test by file path
-  ${chalk.cyan('$ leetcode test 1 -c "[1,2]\\n3"')}   Test with custom case
-  ${chalk.cyan('$ leetcode test 1 --visualize')}     Visual mode for debugging
-  ${chalk.cyan('$ leetcode t 412')}                   Short alias
+  ${chalk.cyan('$ lc test 1')}                  Test by problem ID
+  ${chalk.cyan('$ lc test two-sum')}            Test by problem slug
+  ${chalk.cyan('$ lc test ./path/to/file.py')} Test by file path
+  ${chalk.cyan('$ lc test 1 -c "[1,2]\\n3"')}   Test with custom case
+  ${chalk.cyan('$ lc test 1 --visualize')}     Visual mode for debugging
+  ${chalk.cyan('$ lc t 412')}                   Short alias
 
 ${chalk.gray('Testcases use \\n to separate multiple inputs.')}
 `
@@ -289,8 +292,8 @@ program
     'after',
     `
 ${chalk.yellow('Examples:')}
-  ${chalk.cyan('$ leetcode reset 1')}                 Reset problem 1 solution
-  ${chalk.cyan('$ leetcode reset two-sum')}           Reset by problem slug
+  ${chalk.cyan('$ lc reset 1')}                 Reset problem 1 solution
+  ${chalk.cyan('$ lc reset two-sum')}           Reset by problem slug
 
 ${chalk.gray('Overwrites the existing local solution file immediately.')}
 `
@@ -307,10 +310,10 @@ program
     'after',
     `
 ${chalk.yellow('Examples:')}
-  ${chalk.cyan('$ leetcode submit 1')}                Submit by problem ID
-  ${chalk.cyan('$ leetcode submit two-sum')}          Submit by problem slug
-  ${chalk.cyan('$ leetcode submit ./path/to/file.py')} Submit by file path
-  ${chalk.cyan('$ leetcode x 412')}                   Short alias
+  ${chalk.cyan('$ lc submit 1')}                Submit by problem ID
+  ${chalk.cyan('$ lc submit two-sum')}          Submit by problem slug
+  ${chalk.cyan('$ lc submit ./path/to/file.py')} Submit by file path
+  ${chalk.cyan('$ lc x 412')}                   Short alias
 `
   )
   .action(submitCommand);
@@ -325,10 +328,10 @@ program
     'after',
     `
 ${chalk.yellow('Examples:')}
-  ${chalk.cyan('$ leetcode diff 1')}                  Compare with last accepted
-  ${chalk.cyan('$ leetcode diff 1 -u')}               Show unified diff
-  ${chalk.cyan('$ leetcode diff 1 -s 12345')}         Compare with specific submission
-  ${chalk.cyan('$ leetcode diff 1 -f other.py')}      Compare with local file
+  ${chalk.cyan('$ lc diff 1')}                  Compare with last accepted
+  ${chalk.cyan('$ lc diff 1 -u')}               Show unified diff
+  ${chalk.cyan('$ lc diff 1 -s 12345')}         Compare with specific submission
+  ${chalk.cyan('$ lc diff 1 -f other.py')}      Compare with local file
 `
   )
   .action(diffCommand);
@@ -343,10 +346,10 @@ program
     'after',
     `
 ${chalk.yellow('Examples:')}
-  ${chalk.cyan('$ leetcode submissions 1')}           View submissions for problem
-  ${chalk.cyan('$ leetcode submissions 1 -n 5')}      Show last 5 submissions
-  ${chalk.cyan('$ leetcode submissions 1 --last')}    Show last accepted submission
-  ${chalk.cyan('$ leetcode submissions 1 --download')} Download last accepted code
+  ${chalk.cyan('$ lc submissions 1')}           View submissions for problem
+  ${chalk.cyan('$ lc submissions 1 -n 5')}      Show last 5 submissions
+  ${chalk.cyan('$ lc submissions 1 --last')}    Show last accepted submission
+  ${chalk.cyan('$ lc submissions 1 --download')} Download last accepted code
 `
   )
   .action(submissionsCommand);
@@ -372,11 +375,11 @@ ${chalk.yellow('Options Explained:')}
                     Visualizes your recent coding activity day by day.
 
 ${chalk.yellow('Examples:')}
-  ${chalk.cyan('$ leetcode stat')}                    Show basic stats (solved count, rank)
-  ${chalk.cyan('$ leetcode stat lee215')}             Show another user's stats
-  ${chalk.cyan('$ leetcode stat -c')}                 Weekly activity table
-  ${chalk.cyan('$ leetcode stat -s')}                 Topic-wise breakdown
-  ${chalk.cyan('$ leetcode stat -t')}                 7-day trend chart
+  ${chalk.cyan('$ lc stat')}                    Show basic stats (solved count, rank)
+  ${chalk.cyan('$ lc stat lee215')}             Show another user's stats
+  ${chalk.cyan('$ lc stat -c')}                 Weekly activity table
+  ${chalk.cyan('$ lc stat -s')}                 Topic-wise breakdown
+  ${chalk.cyan('$ lc stat -t')}                 7-day trend chart
 `
   )
   .action((username, options) => statCommand(username, options));
@@ -388,7 +391,7 @@ program
     'after',
     `
 ${chalk.yellow('Examples:')}
-  ${chalk.cyan('$ leetcode today')}                   Show streak, solved, and daily challenge
+  ${chalk.cyan('$ lc today')}                   Show streak, solved, and daily challenge
 `
   )
   .action(todayCommand);
@@ -406,9 +409,9 @@ ${chalk.yellow('Actions:')}
   ${chalk.cyan('clear')}         Clear all bookmarks
 
 ${chalk.yellow('Examples:')}
-  ${chalk.cyan('$ leetcode bookmark add 1')}          Bookmark problem 1
-  ${chalk.cyan('$ leetcode bookmark remove 1')}       Remove bookmark
-  ${chalk.cyan('$ leetcode bookmark list')}           List all bookmarks
+  ${chalk.cyan('$ lc bookmark add 1')}          Bookmark problem 1
+  ${chalk.cyan('$ lc bookmark remove 1')}       Remove bookmark
+  ${chalk.cyan('$ lc bookmark list')}           List all bookmarks
 `
   )
   .action(bookmarkCommand);
@@ -424,9 +427,9 @@ ${chalk.yellow('Actions:')}
   ${chalk.cyan('view')}   Display notes in terminal
 
 ${chalk.yellow('Examples:')}
-  ${chalk.cyan('$ leetcode note 1')}                  Edit notes for problem 1
-  ${chalk.cyan('$ leetcode note 1 edit')}             Edit notes (explicit)
-  ${chalk.cyan('$ leetcode note 1 view')}             View notes in terminal
+  ${chalk.cyan('$ lc note 1')}                  Edit notes for problem 1
+  ${chalk.cyan('$ lc note 1 edit')}             Edit notes (explicit)
+  ${chalk.cyan('$ lc note 1 view')}             View notes in terminal
 `
   )
   .action(notesCommand);
@@ -438,7 +441,7 @@ program
     'after',
     `
 ${chalk.yellow('Examples:')}
-  ${chalk.cyan('$ leetcode sync')}                    Sync all solutions to remote
+  ${chalk.cyan('$ lc sync')}                    Sync all solutions to remote
 `
   )
   .action(syncCommand);
@@ -457,15 +460,15 @@ program
     'after',
     `
 ${chalk.yellow('Examples:')}
-  ${chalk.cyan('$ leetcode config')}                  View current config
-  ${chalk.cyan('$ leetcode config -l python3')}       Set language to Python
-  ${chalk.cyan('$ leetcode config -s leetcode.cn')}   Use LeetCode China site
-  ${chalk.cyan('$ leetcode config -e "code"')}        Set editor to VS Code
-  ${chalk.cyan('$ leetcode config -w ~/leetcode')}    Set solutions folder
-  ${chalk.cyan('$ leetcode config -r https://...')}   Set git repository
-  ${chalk.cyan('$ leetcode config --repo')}            Clear git repository
-  ${chalk.cyan('$ leetcode config --theme light')}    Use light color theme
-  ${chalk.cyan('$ leetcode config -i')}               Interactive setup
+  ${chalk.cyan('$ lc config')}                  View current config
+  ${chalk.cyan('$ lc config -l python3')}       Set language to Python
+  ${chalk.cyan('$ lc config -s leetcode.cn')}   Use LeetCode China site
+  ${chalk.cyan('$ lc config -e "code"')}        Set editor to VS Code
+  ${chalk.cyan('$ lc config -w ~/leetcode')}    Set solutions folder
+  ${chalk.cyan('$ lc config -r https://...')}   Set git repository
+  ${chalk.cyan('$ lc config --repo')}            Clear git repository
+  ${chalk.cyan('$ lc config --theme light')}    Use light color theme
+  ${chalk.cyan('$ lc config -i')}               Interactive setup
 
 ${chalk.gray(`Supported languages: ${getSupportedLanguagesLabel()}`)}
 `
@@ -493,10 +496,10 @@ ${chalk.yellow('How it works:')}
   Your solve times are recorded when you submit successfully.
 
 ${chalk.yellow('Examples:')}
-  ${chalk.cyan('$ leetcode timer 1')}                  Start problem 1 with default time
-  ${chalk.cyan('$ leetcode timer 1 -m 30')}            Start with 30 minute limit
-  ${chalk.cyan('$ leetcode timer --stats')}            Show your solve time statistics
-  ${chalk.cyan('$ leetcode timer --stop')}             Stop active timer
+  ${chalk.cyan('$ lc timer 1')}                  Start problem 1 with default time
+  ${chalk.cyan('$ lc timer 1 -m 30')}            Start with 30 minute limit
+  ${chalk.cyan('$ lc timer --stats')}            Show your solve time statistics
+  ${chalk.cyan('$ lc timer --stop')}             Stop active timer
 `
   )
   .action((id, options) => timerCommand(id, options));
@@ -542,10 +545,10 @@ ${chalk.yellow('Subcommands:')}
   ${chalk.cyan('leave')}          End the collaboration session
 
 ${chalk.yellow('Examples:')}
-  ${chalk.gray('$ leetcode collab host 1')}       Start a session for Two Sum
-  ${chalk.gray('$ leetcode collab join ABC123')} Join your partner's session
-  ${chalk.gray('$ leetcode collab sync')}        Upload your code after solving
-  ${chalk.gray('$ leetcode collab compare')}     Compare solutions
+  ${chalk.gray('$ lc collab host 1')}       Start a session for Two Sum
+  ${chalk.gray('$ lc collab join ABC123')} Join your partner's session
+  ${chalk.gray('$ lc collab sync')}        Upload your code after solving
+  ${chalk.gray('$ lc collab compare')}     Compare solutions
 `
   );
 
@@ -588,10 +591,10 @@ ${chalk.yellow('Subcommands:')}
   ${chalk.cyan('delete <id> <snapshot>')}    Delete a snapshot
 
 ${chalk.yellow('Examples:')}
-  ${chalk.gray('$ leetcode snapshot save 1 "brute-force"')}     Save current solution
-  ${chalk.gray('$ leetcode snapshot list 1')}                   List snapshots
-  ${chalk.gray('$ leetcode snapshot restore 1 2')}              Restore snapshot #2
-  ${chalk.gray('$ leetcode snapshot diff 1 1 2')}               Compare snapshots
+  ${chalk.gray('$ lc snapshot save 1 "brute-force"')}     Save current solution
+  ${chalk.gray('$ lc snapshot list 1')}                   List snapshots
+  ${chalk.gray('$ lc snapshot restore 1 2')}              Restore snapshot #2
+  ${chalk.gray('$ lc snapshot diff 1 1 2')}               Compare snapshots
 `
   );
 
@@ -630,9 +633,9 @@ program
     'after',
     `
 ${chalk.yellow('Examples:')}
-  ${chalk.cyan('$ leetcode update')}                   Check for updates
-  ${chalk.cyan('$ leetcode update --force')}           Force re-check npm registry
-  ${chalk.cyan('$ leetcode update --check-only')}      Just check, minimal output
+  ${chalk.cyan('$ lc update')}                   Check for updates
+  ${chalk.cyan('$ lc update --force')}           Force re-check npm registry
+  ${chalk.cyan('$ lc update --check-only')}      Just check, minimal output
 `
   )
   .action(updateCommand);
@@ -647,11 +650,11 @@ program
     'after',
     `
 ${chalk.yellow('Examples:')}
-  ${chalk.cyan('$ leetcode changelog')}                Show what's new since your version
-  ${chalk.cyan('$ leetcode changelog --all')}          View full changelog
-  ${chalk.cyan('$ leetcode changelog 2.0.0')}          Show specific version
-  ${chalk.cyan('$ leetcode changelog --latest')}       Show latest version only
-  ${chalk.cyan('$ leetcode changelog --breaking')}     Filter to breaking changes
+  ${chalk.cyan('$ lc changelog')}                Show what's new since your version
+  ${chalk.cyan('$ lc changelog --all')}          View full changelog
+  ${chalk.cyan('$ lc changelog 2.0.0')}          Show specific version
+  ${chalk.cyan('$ lc changelog --latest')}       Show latest version only
+  ${chalk.cyan('$ lc changelog --breaking')}     Filter to breaking changes
 `
   )
   .action((version, options) => changelogCommand(version, options));
@@ -680,7 +683,7 @@ Supported shells:
   - fish
 
 Examples:
-  $ leetcode completion zsh > ~/.zsh/_leetcode
+  $ lc completion zsh > ~/.zsh/_leetcode
 `
   )
   .action(completionCommand);
@@ -709,7 +712,7 @@ if (args.length === 0 && process.stdout.isTTY) {
 } else if (args.length === 0) {
   // No args + non-TTY (piped) → show help
   console.log();
-  console.log(chalk.bold.cyan('  🔥 LeetCode CLI'));
+  console.log(chalk.bold.cyan('  🔥 lc'));
   console.log(chalk.gray('  A modern command-line interface for LeetCode'));
   console.log();
   program.outputHelp();

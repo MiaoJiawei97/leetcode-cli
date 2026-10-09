@@ -32,14 +32,14 @@ export async function collabHostCommand(problemId: string): Promise<void> {
     console.log(chalk.white(`Problem: ${problemId}`));
     console.log();
     console.log(chalk.gray('Share this code with your partner:'));
-    console.log(chalk.yellow(`  leetcode collab join ${result.roomCode}`));
+    console.log(chalk.yellow(`  lc collab join ${result.roomCode}`));
     console.log();
     console.log(chalk.gray('─'.repeat(50)));
     console.log(chalk.gray('After solving, sync and compare:'));
-    console.log(chalk.gray('  leetcode collab sync     - Upload your solution'));
-    console.log(chalk.gray('  leetcode collab compare  - See both solutions'));
-    console.log(chalk.gray('  leetcode collab status   - Check room status'));
-    console.log(chalk.gray('  leetcode collab leave    - End session'));
+    console.log(chalk.gray('  lc collab sync     - Upload your solution'));
+    console.log(chalk.gray('  lc collab compare  - See both solutions'));
+    console.log(chalk.gray('  lc collab status   - Check room status'));
+    console.log(chalk.gray('  lc collab leave    - End session'));
     console.log();
 
     // Pick the problem and open in editor
@@ -77,10 +77,10 @@ export async function collabJoinCommand(roomCode: string): Promise<void> {
     console.log();
     console.log(chalk.gray('─'.repeat(50)));
     console.log(chalk.gray('After solving, sync and compare:'));
-    console.log(chalk.gray('  leetcode collab sync     - Upload your solution'));
-    console.log(chalk.gray('  leetcode collab compare  - See both solutions'));
-    console.log(chalk.gray('  leetcode collab status   - Check room status'));
-    console.log(chalk.gray('  leetcode collab leave    - End session'));
+    console.log(chalk.gray('  lc collab sync     - Upload your solution'));
+    console.log(chalk.gray('  lc collab compare  - See both solutions'));
+    console.log(chalk.gray('  lc collab status   - Check room status'));
+    console.log(chalk.gray('  lc collab leave    - End session'));
     console.log();
 
     // Pick the problem and open in editor
@@ -98,9 +98,7 @@ export async function collabSyncCommand(): Promise<void> {
 
   if (!session) {
     console.log(chalk.yellow('No active collaboration session.'));
-    console.log(
-      chalk.gray('Use `leetcode collab host <id>` or `leetcode collab join <code>` first.')
-    );
+    console.log(chalk.gray('Use `lc collab host <id>` or `lc collab join <code>` first.'));
     return;
   }
 
@@ -137,9 +135,7 @@ export async function collabCompareCommand(): Promise<void> {
 
   if (!session) {
     console.log(chalk.yellow('No active collaboration session.'));
-    console.log(
-      chalk.gray('Use `leetcode collab host <id>` or `leetcode collab join <code>` first.')
-    );
+    console.log(chalk.gray('Use `lc collab host <id>` or `lc collab join <code>` first.'));
     return;
   }
 
@@ -169,7 +165,7 @@ export async function collabCompareCommand(): Promise<void> {
 
     if (!partnerResult.code) {
       console.log(chalk.yellow('Partner has not synced their code yet.'));
-      console.log(chalk.gray('Ask them to run `leetcode collab sync`.'));
+      console.log(chalk.gray('Ask them to run `lc collab sync`.'));
       return;
     }
 
@@ -229,9 +225,7 @@ export async function collabStatusCommand(): Promise<void> {
 
   if (!session) {
     console.log(chalk.yellow('No active collaboration session.'));
-    console.log(
-      chalk.gray('Use `leetcode collab host <id>` or `leetcode collab join <code>` to start.')
-    );
+    console.log(chalk.gray('Use `lc collab host <id>` or `lc collab join <code>` to start.'));
     return;
   }
 

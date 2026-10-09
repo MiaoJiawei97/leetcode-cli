@@ -26,7 +26,7 @@ describe('Changelog Command', () => {
     it('should display changelog header', async () => {
       await changelogCommand(undefined, { latest: true });
 
-      expect(outputContains('Release Notes') || outputContains('LeetCode CLI')).toBe(true);
+      expect(outputContains('Release Notes') || outputContains('lc')).toBe(true);
     }, 15000); // Increased timeout for network call
 
     it('should show specific version when provided', async () => {

@@ -51,9 +51,9 @@ export async function timerCommand(
   // For starting a timer, id is required
   if (!idOrSlug) {
     console.log(chalk.yellow('Please provide a problem ID to start the timer.'));
-    console.log(chalk.gray('Usage: leetcode timer <id>'));
-    console.log(chalk.gray('       leetcode timer --stats'));
-    console.log(chalk.gray('       leetcode timer --stop'));
+    console.log(chalk.gray('Usage: lc timer <id>'));
+    console.log(chalk.gray('       lc timer --stats'));
+    console.log(chalk.gray('       lc timer --stop'));
     return;
   }
 
@@ -70,7 +70,7 @@ export async function timerCommand(
     console.log(chalk.white(`   Problem: ${activeTimer.title}`));
     console.log(chalk.white(`   Elapsed: ${formatDuration(elapsed)}`));
     console.log();
-    console.log(chalk.gray('Use `leetcode timer --stop` to stop it first.'));
+    console.log(chalk.gray('Use `lc timer --stop` to stop it first.'));
     return;
   }
 
@@ -113,7 +113,7 @@ export async function timerCommand(
     console.log(chalk.gray('─'.repeat(50)));
     console.log(chalk.green('✓ Timer is running in background'));
     console.log(chalk.gray('  When you submit successfully, your time will be recorded.'));
-    console.log(chalk.gray('  Use `leetcode timer --stop` to cancel.'));
+    console.log(chalk.gray('  Use `lc timer --stop` to cancel.'));
     console.log();
 
     // Pick the problem (opens editor)

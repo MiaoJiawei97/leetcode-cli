@@ -194,9 +194,9 @@ function explainReason(reason: CredentialStatusReason): string {
     case 'FILE_MISSING_MASTER_KEY':
       return 'File backend requires LEETCODECLI_MASTER_KEY to read or write credentials.';
     case 'FILE_DECRYPT_FAILED':
-      return 'Stored encrypted credentials could not be decrypted. Run "leetcode login" again.';
+      return 'Stored encrypted credentials could not be decrypted. Run "lc login" again.';
     case 'LEGACY_CREDENTIALS_IGNORED':
-      return 'Legacy plaintext credentials were detected and ignored. Please run "leetcode login" again.';
+      return 'Legacy plaintext credentials were detected and ignored. Please run "lc login" again.';
   }
 }
 
@@ -215,7 +215,7 @@ export function describeCredentialStatus(status: CredentialStoreStatus): string 
   if (status.reason) {
     return explainReason(status.reason);
   }
-  return 'No credentials found. Run "leetcode login".';
+  return 'No credentials found. Run "lc login".';
 }
 
 function successResult(

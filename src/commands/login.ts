@@ -98,7 +98,7 @@ export async function loginCommand(): Promise<void> {
   }
 
   console.log();
-  console.log(chalk.cyan('LeetCode CLI Login'));
+  console.log(chalk.cyan('lc Login'));
   console.log(chalk.gray('─'.repeat(40)));
   console.log();
 
@@ -208,7 +208,7 @@ export async function whoamiCommand(): Promise<void> {
     const message =
       typeof credentialStore.describeCredentialStatus === 'function'
         ? credentialStore.describeCredentialStatus(status)
-        : 'Not logged in. Run "leetcode login" to authenticate.';
+        : 'Not logged in. Run "lc login" to authenticate.';
     console.log(chalk.yellow(message));
     return;
   }
@@ -221,7 +221,7 @@ export async function whoamiCommand(): Promise<void> {
 
     if (!isSignedIn || !username) {
       spinner.fail('Session expired');
-      console.log(chalk.yellow('Please run "leetcode login" to re-authenticate.'));
+      console.log(chalk.yellow('Please run "lc login" to re-authenticate.'));
       return;
     }
 

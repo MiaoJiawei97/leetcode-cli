@@ -99,6 +99,8 @@ export class LeetCodeClient {
     const baseUrl = BASE_URLS[site];
     return got.extend({
       prefixUrl: baseUrl,
+      // CN's browser verification rejects this client's HTTP/1.1 requests.
+      http2: site === 'leetcode.cn',
       headers: {
         'Content-Type': 'application/json',
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
@@ -156,7 +158,7 @@ export class LeetCodeClient {
 
     if (this.site === 'leetcode.cn') {
       if (isSchemaMismatchError(message)) {
-        return `LeetCode CN schema mismatch for ${label}: ${message}. If you intended Global LeetCode, run: leetcode config --site leetcode.com`;
+        return `LeetCode CN schema mismatch for ${label}: ${message}. If you intended Global LeetCode, run: lc config --site leetcode.com`;
       }
       return `LeetCode CN API error for ${label}: ${message}`;
     }

@@ -39,9 +39,7 @@ export async function resetCommand(idOrSlug: string): Promise<boolean> {
       spinner.fail(`No solution file found for problem ${problem.questionFrontendId}`);
       console.log(chalk.gray(`Looking in: ${workDir}`));
       console.log(
-        chalk.gray(
-          `Run "leetcode pick ${problem.questionFrontendId}" first to create a solution file.`
-        )
+        chalk.gray(`Run "lc pick ${problem.questionFrontendId}" first to create a solution file.`)
       );
       return false;
     }

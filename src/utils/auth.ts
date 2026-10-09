@@ -67,10 +67,10 @@ export async function requireAuth(): Promise<{ authorized: boolean; username?: s
       const message =
         typeof credentialStore.describeCredentialStatus === 'function'
           ? credentialStore.describeCredentialStatus(status)
-          : 'Please login first: leetcode login';
+          : 'Please login first: lc login';
       console.log(chalk.yellow(`⚠️  ${message}`));
     } catch {
-      console.log(chalk.yellow('⚠️  Please login first: leetcode login'));
+      console.log(chalk.yellow('⚠️  Please login first: lc login'));
     }
     return { authorized: false };
   }
@@ -80,13 +80,13 @@ export async function requireAuth(): Promise<{ authorized: boolean; username?: s
     const { isSignedIn, username } = await leetcodeClient.checkAuth();
 
     if (!isSignedIn) {
-      console.log(chalk.yellow('⚠️  Session expired. Please run: leetcode login'));
+      console.log(chalk.yellow('⚠️  Session expired. Please run: lc login'));
       return { authorized: false };
     }
 
     return { authorized: true, username: username ?? undefined };
   } catch {
-    console.log(chalk.yellow('⚠️  Session validation failed. Please run: leetcode login'));
+    console.log(chalk.yellow('⚠️  Session validation failed. Please run: lc login'));
     return { authorized: false };
   }
 }

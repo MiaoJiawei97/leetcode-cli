@@ -43,7 +43,7 @@ export async function notesCommand(
 async function viewNote(notePath: string, problemId: string): Promise<void> {
   if (!existsSync(notePath)) {
     console.log(chalk.yellow(`No notes found for problem ${problemId}`));
-    console.log(chalk.gray(`Use "leetcode note ${problemId} edit" to create notes`));
+    console.log(chalk.gray(`Use "lc note ${problemId} edit" to create notes`));
     return;
   }
 

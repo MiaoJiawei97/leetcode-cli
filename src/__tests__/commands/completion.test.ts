@@ -24,7 +24,7 @@ describe('Completion Command', () => {
     await completionCommand('zsh');
 
     const output = mockConsole.logs.join('\n');
-    expect(output).toContain('#compdef leetcode');
+    expect(output).toContain('#compdef lc');
     expect(output).toContain('_leetcode()');
     expect(output).toContain('workspace subcommand');
   });
@@ -34,14 +34,14 @@ describe('Completion Command', () => {
 
     const output = mockConsole.logs.join('\n');
     expect(output).toContain('_leetcode_completion()');
-    expect(output).toContain('complete -F _leetcode_completion leetcode');
+    expect(output).toContain('complete -F _leetcode_completion lc');
   });
 
   it('should generate fish autocompletion script', async () => {
     await completionCommand('fish');
 
     const output = mockConsole.logs.join('\n');
-    expect(output).toContain('complete -c leetcode -f');
+    expect(output).toContain('complete -c lc -f');
     expect(output).toContain('__fish_seen_subcommand_from');
   });
 

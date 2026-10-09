@@ -109,7 +109,7 @@ export async function pickCommand(idOrSlug: string, options: PickOptions): Promi
       console.log(chalk.gray(`Path: ${filePath}`));
 
       // Optionally open existing file
-      if (options.open !== false) {
+      if (options.open === true) {
         await openInEditor(filePath);
       }
       return true;
@@ -124,7 +124,7 @@ export async function pickCommand(idOrSlug: string, options: PickOptions): Promi
     console.log(chalk.gray(`Difficulty: ${problem.difficulty} | Category: ${category}`));
 
     // Open in editor
-    if (options.open !== false) {
+    if (options.open === true) {
       await openInEditor(filePath);
     }
     return true;

@@ -52,13 +52,13 @@ export async function randomCommand(options: RandomOptions): Promise<void> {
 
     if (options.pick) {
       // Forward to pick command
-      await pickCommand(titleSlug, { open: options.open ?? true });
+      await pickCommand(titleSlug, { open: options.open ?? false });
     } else {
       // Forward to show command
       await showCommand(titleSlug);
 
       console.log(chalk.gray('Run following to start solving:'));
-      console.log(chalk.cyan(`  leetcode pick ${titleSlug}`));
+      console.log(chalk.cyan(`  lc pick ${titleSlug}`));
     }
   } catch (error) {
     spinner.fail('Failed to fetch random problem');

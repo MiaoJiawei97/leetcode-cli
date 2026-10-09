@@ -12,7 +12,7 @@ export function renderHeader(props: HeaderProps): string[] {
   const { username, isConnected, width } = props;
   const lines: string[] = [];
 
-  const logo = chalk.hex(colors.primary).bold(`${icons.fire} LeetCode CLI`);
+  const logo = chalk.hex(colors.primary).bold(`${icons.fire} lc`);
   const status = isConnected
     ? chalk.hex(colors.success)('● Connected')
     : chalk.hex(colors.error)('○ Offline');
